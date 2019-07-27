@@ -9,7 +9,7 @@ app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
-app.get('/api/movies', (req, res) => {
+app.get('/movies', (req, res) => {
     pool.query(`SELECT * FROM "movies" ORDER BY "id";`)
         .then((result) => {
             res.send(result.rows);
