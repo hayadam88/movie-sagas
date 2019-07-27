@@ -5,19 +5,17 @@ import './App.css';
 
 class App extends Component {
 
-  state = {
-    movieList: [],
-  }
 
   componentDidMount(){
-    console.log(this.state.movieList);
     Axios.get('/movies')
       .then(response => {
         console.log(response.data);
-        this.setState({
-          movieList: response.data,
-        });
+        this.props.dispatch({type: 'SET_MOVIES', payload: response.data})
       });
+  }
+
+  handleClick = () => {
+    console.log('clicked movie');
   }
 
   // Renders the entire app on the DOM
@@ -25,14 +23,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Movie Gallery</h1>
-        <h2>this.state</h2>
-        <pre>
-          {JSON.stringify(this.state.movieList)}
-        </pre>
-        <h2>this.props</h2>
-         <pre>
-          {JSON.stringify(this.props.reduxStore.movies)}
-        </pre>
+        <ul>
+        {this.props.reduxStore.movies.map(movie => {
+          return <li key={movie.id} onClick={this.handleClick}>{movie.title}</li>
+        })}
+        </ul>
       </div>
     );
   }
