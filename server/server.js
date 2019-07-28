@@ -20,6 +20,17 @@ app.get('/movies', (req, res) => {
         });
 });
 
+app.get('/movies/details/:id', (req, res) => {
+    pool.query(`SELECT * FROM "movies" WHERE "id"=$1;`, [req.params.id])
+        .then((result) => {
+            res.send(result.rows[0]);
+        })
+        .catch(error => {
+            console.log('Error making movies get request', error);
+            res.sendStatus(500);
+        });
+});
+
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);
