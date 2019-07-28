@@ -4,6 +4,7 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 import Details from '../Details/Details';
 import Home from '../Home/Home';
+import Edit from '../Edit/Edit';
 
 class App extends Component {
 
@@ -14,6 +15,7 @@ class App extends Component {
       <div className="App">
         <Route path="/" exact component={Home} />
         <Route path="/details" component={Details} />
+        <Route path="/edit" component={Edit} />
         
         
       </div>

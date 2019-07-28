@@ -5,10 +5,6 @@ import {connect} from 'react-redux';
 
 class Details extends Component {
 
-  componentDidMount(){
-    console.log('details is mounted')
-  }
-
   handleBackClick = (event) => {
       console.log('clicked back button')
       this.props.history.push('/')
@@ -16,6 +12,7 @@ class Details extends Component {
 
   handleEditClick = (event) => {
       console.log('clicked edit button')
+      this.props.history.push('/edit')
   }
 
   render() {
