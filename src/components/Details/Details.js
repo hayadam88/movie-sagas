@@ -20,10 +20,14 @@ class Details extends Component {
     return (
       
       <div className="App">
-        <h1>Movie Details</h1>
+        <center>
+        <h2>{this.props.reduxStore.movieDetails.title}</h2>
+        <img src={this.props.reduxStore.movieDetails.poster}/>
         <br/>
-        <h2>Props</h2>
+        {this.props.reduxStore.movieDetails.description}
+        
         {JSON.stringify(this.props.reduxStore.movieDetails)}
+        </center>
       </div>
     );
   }
