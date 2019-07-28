@@ -10,7 +10,6 @@ class Home extends Component {
   }
 
   handleClick = (movie) => {
-    console.log(movie.id);
     this.props.history.push('/details');
     this.props.dispatch({type: 'FETCH_MOVIE_DETAILS', payload: movie})
   }

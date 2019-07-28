@@ -5,23 +5,21 @@ import {connect} from 'react-redux';
 
 class Details extends Component {
 
-
   componentDidMount(){
     console.log('details is mounted')
   }
 
-  handleClick = (movie) => {
-    console.log(movie.id);
-    this.props.history.push('/details');
+  handleBackClick = (event) => {
+      console.log('clicked back button')
+      this.props.history.push('/')
   }
 
-  // Renders the entire app on the DOM
+  handleEditClick = (event) => {
+      console.log('clicked edit button')
+  }
+
   render() {
     return (
-
-        // {this.props.reduxStore.movies.map(movie => {
-        //   return <li key={movie.id} onClick={() => this.handleClick(movie)}>
-        // <img src={movie.poster}/>
       
       <div className="App">
         <center>
@@ -38,6 +36,9 @@ class Details extends Component {
         </div>
         <br/>
         {this.props.reduxStore.movieDetails.description}
+        <br/>
+        <button onClick={this.handleEditClick}>Edit Movie Details</button>
+        <button onClick={this.handleBackClick}>Back to Movie List</button>
         </center>
       </div>
     );
