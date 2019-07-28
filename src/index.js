@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App.js';
+import Axios from 'axios';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // Provider allows us to use redux within our react app
@@ -14,10 +15,16 @@ import { takeEvery, put } from 'redux-saga/effects';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies)
+    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails)
 }
 
 function* fetchMovies(action) {
-    console.log('fetchMovies action is', action);
+    const response = yield Axios.get('/movies')
+    yield put ({type: 'SET_MOVIES', payload: response.data})
+}
+
+function* fetchMovieDetails(action) {
+  console.log('fetchMovieDetails action is', action);
 }
 
 // Create sagaMiddleware
