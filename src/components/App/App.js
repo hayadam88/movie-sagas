@@ -1,34 +1,30 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {connect} from 'react-redux';
+import {HashRouter as Router, Route} from 'react-router-dom';
 import './App.css';
+import Details from '../Details/Details';
+import Home from '../Home/Home';
 
 class App extends Component {
 
-
-  componentDidMount(){
-    Axios.get('/movies')
-      .then(response => {
-        console.log(response.data);
-        this.props.dispatch({type: 'SET_MOVIES', payload: response.data})
-      });
-  }
-
-  handleClick = () => {
-    console.log('clicked movie');
+  handleClick = (movie) => {
+    console.log(movie.id);
+    this.props.history.push('/details');
   }
 
   // Renders the entire app on the DOM
   render() {
     return (
+      <Router>
       <div className="App">
-        <h1>Movie Gallery</h1>
-        <ul>
-        {this.props.reduxStore.movies.map(movie => {
-          return <li key={movie.id} onClick={this.handleClick}>{movie.title}</li>
-        })}
-        </ul>
+        <Route path="/" exact component={Home} />
+        <Route path="/details" component={Details} />
+        
+        
       </div>
+      
+      </Router>
     );
   }
 }
