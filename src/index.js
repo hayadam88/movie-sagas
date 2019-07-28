@@ -25,9 +25,12 @@ function* fetchMovies(action) {
 
 function* fetchMovieDetails(action) {
   console.log('fetchMovieDetails action is', action);
-  const response = yield Axios.get(`/movies/details/${action.payload.id}`);
-  yield put({type: 'SET_MOVIE_DETAILS', payload: response.data})
+  const detailsResponse = yield Axios.get(`/movies/details/${action.payload.id}`);
+  yield put({type: 'SET_MOVIE_DETAILS', payload: detailsResponse.data})
+  const genresResponse = yield Axios.get(`/genres/${action.payload.id}`)
+  yield put({type: 'SET_GENRES', payload: genresResponse.data})
 }
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -55,7 +58,7 @@ const movieDetails = (state = {}, action) => {
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
-        case 'SET_TAGS':
+        case 'SET_GENRES':
             return action.payload;
         default:
             return state;
