@@ -31,6 +31,20 @@ app.get('/movies/details/:id', (req, res) => {
         });
 });
 
+app.get('/genres/:id', (req, res) => {
+    pool.query(`SELECT * FROM "genres"
+    JOIN "movies_genres"
+    ON "movies_genres"."genre_id"="genres"."id"
+    WHERE "movie_id"=$1;`, [req.params.id])
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('Error making movies get request', error);
+            res.sendStatus(500);
+        });
+});
+
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);
