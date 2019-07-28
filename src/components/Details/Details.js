@@ -34,8 +34,8 @@ class Details extends Component {
         <br/>
         {this.props.reduxStore.movieDetails.description}
         <br/>
-        <button onClick={this.handleEditClick}>Edit Movie Details</button>
         <button onClick={this.handleBackClick}>Back to Movie List</button>
+        <button onClick={this.handleEditClick}>Edit Movie Details</button>
         </center>
       </div>
     );
