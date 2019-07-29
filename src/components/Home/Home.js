@@ -4,11 +4,15 @@ import {connect} from 'react-redux';
 
 class Home extends Component {
 
-
+  // This dispatches the FETCH_MOVIES action, which calls the fetchMovies saga
   componentDidMount(){
     this.props.dispatch({type: 'FETCH_MOVIES'});
   }
 
+
+  // When the movie is clicked, navigates to details patch. It also dispatches the
+  // FETCH_MOVIE_DETAILS action and sends our payload, movie, which is details of the
+  // specific movie clicked
   handleClick = (movie) => {
     this.props.history.push('/details');
     this.props.dispatch({type: 'FETCH_MOVIE_DETAILS', payload: movie})

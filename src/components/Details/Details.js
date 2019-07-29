@@ -5,11 +5,13 @@ import {connect} from 'react-redux';
 
 class Details extends Component {
 
+  // When back button is clicked, navigates back to home page  
   handleBackClick = (event) => {
       console.log('clicked back button')
       this.props.history.push('/')
   }
-
+  
+  // When edit button is clicked, navigates to edit page
   handleEditClick = (event) => {
       console.log('clicked edit button')
       this.props.history.push('/edit')
