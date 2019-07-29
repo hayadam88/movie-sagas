@@ -19,6 +19,7 @@ function* rootSaga() {
     yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
+//Generator Function that handles editMovie
 function* editMovie(action){
     try{
         // axios put to update database
@@ -31,11 +32,13 @@ function* editMovie(action){
     }
 }
 
+// generator Function that handles fetchMovies
 function* fetchMovies(action) {
     const response = yield Axios.get('/movies');
     yield put ({type: 'SET_MOVIES', payload: response.data});
 }
 
+// generator Function that handles fetchMovieDetials
 function* fetchMovieDetails(action) {
   console.log('fetchMovieDetails action is', action);
   const detailsResponse = yield Axios.get(`/movies/details/${action.payload.id}`);
