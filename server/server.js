@@ -45,6 +45,19 @@ app.get('/genres/:id', (req, res) => {
         });
 });
 
+app.put('/movies/:id', (req, res) => {
+    console.log('Updating movies with', req.body)
+    const sqlText = `UPDATE "movies" SET "title" = $1, "description" = $2 WHERE "id" = $3;`;
+    values = [req.body.name, req.body.description, req.body.id]
+    pool.query(sqlText, values)
+    .then((response) => {
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        res.sendStatus(500);
+    })
+})
+
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
     console.log('Listening on port: ', port);

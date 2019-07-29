@@ -16,6 +16,19 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
+    yield takeEvery('EDIT_MOVIE', editMovie);
+}
+
+function* editMovie(action){
+    try{
+        // axios put to update database
+
+        yield Axios.put(`/movies/${action.payload.id}`, action.payload);
+        yield put ({type: 'FETCH_MOVIES'})
+    }
+    catch(error) {
+        console.log('Error updating DB', error);
+    }
 }
 
 function* fetchMovies(action) {
