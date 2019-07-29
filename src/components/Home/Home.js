@@ -10,8 +10,8 @@ class Home extends Component {
   }
 
 
-  // When the movie is clicked, navigates to details patch. It also dispatches the
-  // FETCH_MOVIE_DETAILS action and sends our payload, movie, which is details of the
+  // When the movie is clicked, navigates to details page. It also dispatches the
+  // FETCH_MOVIE_DETAILS action and sends our payload, movie, along to the reduxState, which is details of the
   // specific movie clicked
   handleClick = (movie) => {
     this.props.history.push('/details');
