@@ -34,8 +34,14 @@ function* editMovie(action){
 
 // generator Function that handles fetchMovies
 function* fetchMovies(action) {
-    const response = yield Axios.get('/movies');
-    yield put ({type: 'SET_MOVIES', payload: response.data});
+    try {
+        const response = yield Axios.get('/movies');
+        yield put ({type: 'SET_MOVIES', payload: response.data});
+    }
+    catch (error) {
+        console.log('Error getting movies', error);
+        alert(`Couldn't get your movie data`);
+    }
 }
 
 // generator Function that handles fetchMovieDetials
